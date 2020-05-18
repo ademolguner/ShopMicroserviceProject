@@ -15,12 +15,12 @@ namespace Shop.ProductService.Business.Concrete
         public ProductManager(IEventBus eventBus)
         {
             this.eventBus = eventBus;
-            LoadProductList();
+              LoadProductList();
         }
 
         public async Task<Product> GetAsync(int productId)
         {
-            return LoadProductList().FirstOrDefault(p => p.ProductId == productId);
+            return await Task.FromResult<Product>(LoadProductList().FirstOrDefault(p => p.ProductId == productId));
         }
 
         public async Task UpdateAsync(Product product)
