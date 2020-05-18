@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Shop.Core.Entities;
 using Shop.Domain.Amqp.Events;
-using Shop.ProductService.Api.Entities;
+using Shop.ProductService.Entities.Models;
 
 namespace Shop.ProductService.Api.Configurations.Mapping
 {

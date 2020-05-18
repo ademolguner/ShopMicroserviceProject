@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Shop.ProductService.Api.Entities;
-using Shop.ProductService.Api.Repositories;
+using Microsoft.AspNetCore.Mvc; 
+using Shop.ProductService.Business.Abstract;
+using Shop.ProductService.Entities.Models;
 
 namespace Shop.ProductService.Api.Controllers
 {
@@ -13,17 +13,17 @@ namespace Shop.ProductService.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IProductRepository _productRepository;
-        public ProductController(IProductRepository productRepository)
+        private IProductServices _productServices;
+        public ProductController(IProductServices productServices)
         {
-            _productRepository = productRepository;
+            _productServices = productServices;
         }
 
         // GET: api/Product/5
         [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> Get(int id)
         {
-            var product =await _productRepository.GetAsync(id);
+            var product =await _productServices.GetAsync(id);
             return Ok(product);
         }
 
@@ -32,10 +32,10 @@ namespace Shop.ProductService.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Product productItem)
         {
-            var product = await _productRepository.GetAsync(productItem.ProductId);
+            var product = await _productServices.GetAsync(productItem.ProductId);
             if (product!=null)
             {
-                await _productRepository.UpdateAsync(productItem);
+                await _productServices.UpdateAsync(productItem);
                 return Ok(productItem);
             }
 

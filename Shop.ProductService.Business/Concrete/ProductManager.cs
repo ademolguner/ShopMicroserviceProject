@@ -1,26 +1,28 @@
-﻿using System;
+﻿using Shop.Core.Amqp.Bus;
+using Shop.Domain.Commands;
+using Shop.ProductService.Business.Abstract;
+using Shop.ProductService.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
-using Shop.Core.Amqp.Bus;
-using Shop.Domain.Commands;
-using Shop.ProductService.Api.Entities;
 
-namespace Shop.ProductService.Api.Repositories
+namespace Shop.ProductService.Business.Concrete
 {
-    public class ProductRepository : IProductRepository
+    public class ProductManager : IProductServices
     {
 
-        private readonly IEventBus eventBus;
-        public ProductRepository(IEventBus eventBus)
+        private IEventBus eventBus;
+        public ProductManager(IEventBus eventBus)
         {
             this.eventBus = eventBus;
             LoadProductList();
         }
+
         public async Task<Product> GetAsync(int productId)
         {
-            return await Task.FromResult<Product>(LoadProductList().FirstOrDefault(p => p.ProductId == productId));
+            return LoadProductList().FirstOrDefault(p => p.ProductId == productId);
         }
 
         public async Task UpdateAsync(Product product)
@@ -34,7 +36,6 @@ namespace Shop.ProductService.Api.Repositories
             );
             await eventBus.SendCommand(command);
         }
-
 
         private List<Product> LoadProductList()
         {

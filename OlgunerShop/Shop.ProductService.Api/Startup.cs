@@ -22,6 +22,8 @@ using Shop.Core.DataAccess.Mongo;
 using Shop.Domain.Amqp.Events;
 using Shop.ProductService.Api.Configurations.Log;
 using Shop.ProductService.Api.Repositories;
+using Shop.ProductService.Business.Abstract;
+using Shop.ProductService.Business.Concrete;
 
 namespace Shop.ProductService.Api
 {
@@ -59,7 +61,7 @@ namespace Shop.ProductService.Api
                 return new RabbitMqBus(sp.GetService<IMediator>(), baseOptions, logFactory, scopeFactory);
             });
             //Generic Repository
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductServices, ProductManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
