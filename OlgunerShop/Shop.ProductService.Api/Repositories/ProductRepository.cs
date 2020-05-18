@@ -20,7 +20,7 @@ namespace Shop.ProductService.Api.Repositories
         }
         public async Task<Product> GetAsync(int productId)
         {
-            return LoadProductList().FirstOrDefault(p => p.ProductId == productId);
+            return await Task.FromResult<Product>(LoadProductList().FirstOrDefault(p => p.ProductId == productId));
         }
 
         public async Task UpdateAsync(Product product)

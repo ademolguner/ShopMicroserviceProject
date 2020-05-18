@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 
 namespace Shop.Core.CrossCutting.Logging.NLog
 {
@@ -12,12 +13,12 @@ namespace Shop.Core.CrossCutting.Logging.NLog
         }
         private static void WriteMessageToFile(string message)
         {
-            //const string filePath = "C:\\Log\\AspCoreFileLog.txt";
-            //using (var streamWriter = new StreamWriter(filePath, true))
-            //{
-            //    streamWriter.WriteLine(message);
-            //    streamWriter.Close();
-            //}
+            const string filePath = "C:\\Log\\AspCoreFileLog.txt";
+            using (var streamWriter = new StreamWriter(filePath, true))
+            {
+                streamWriter.WriteLine(message);
+                streamWriter.Close();
+            }
         }
         public IDisposable BeginScope<TState>(TState state)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Core.DataAccess.EntityFramework
 {
-    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepositoryAsync<TEntity>
+    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext :DbContext,new()
     {

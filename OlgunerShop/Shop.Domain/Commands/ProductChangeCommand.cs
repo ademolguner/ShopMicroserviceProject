@@ -15,10 +15,7 @@ namespace Shop.Domain.Commands
         public short UnitsInStock { get; set; }
         public string PictureUrl { get; set; }
 
-        public ProductChangeCommand(
-            int productId, string productName, 
-            int categoryId, decimal unitPrice, 
-            short unitsInStock, string pictureUrl)
+        public ProductChangeCommand(int productId, string productName, int categoryId, decimal unitPrice, short unitsInStock, string pictureUrl)
         {
             Id = Guid.NewGuid();
             ProductId = productId;

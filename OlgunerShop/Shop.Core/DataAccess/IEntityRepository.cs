@@ -7,7 +7,7 @@ using Shop.Core.Entities;
 
 namespace Shop.Core.DataAccess
 {
-    public interface IEntityRepositoryAsync<T> where T : class, IEntity, new()
+    public interface IEntityRepository<T> where T : class, IEntity, new()
     {
         Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null);
         Task<T> GetAsync(Expression<Func<T, bool>> filter);

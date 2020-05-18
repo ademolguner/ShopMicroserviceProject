@@ -136,25 +136,6 @@ namespace Shop.Core.Amqp.Infrastructure
                     }
                 }
             }
-        }
-        //private async Task ProcessEvent(string eventName, string message)
-        //{
-        //    if (_handlers.ContainsKey(eventName))
-        //    {
-        //        var subscriptions = _handlers[eventName];
-        //        foreach (var subscription in subscriptions)
-        //        {
-        //            var handler = Activator.CreateInstance(subscription);
-        //            if (handler != null)
-        //            {
-        //                var eventType = _eventTypes.SingleOrDefault(p => p.Name == eventName);
-        //                var @event = JsonConvert.DeserializeObject(message, eventType);
-        //                var concreteType = typeof(IEventHandler<>).MakeGenericType(eventType);
-        //                await (Task)concreteType.GetMethod("Handle")?.Invoke(handler, new [] { @event });
-        //            }
-
-        //        }
-        //    }
-        //}
+        } 
     }
 }

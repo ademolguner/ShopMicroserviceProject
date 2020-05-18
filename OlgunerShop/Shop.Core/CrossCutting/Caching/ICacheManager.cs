@@ -10,12 +10,9 @@ namespace Shop.Core.CrossCutting.Caching
         void Remove(string key);
         void RemoveByPattern(string pattern);
         void Clear();
-    }
 
-    public interface ICacheManagerAsync
-    {
-        Task AddAsync<T>(string key, T value, int minute);
-        Task<T> GetAsync<T>(string key);
-        Task<bool> IsExistAsync<T>(string key);
+        //Task AddAsync<T>(string key, T value, int minute);
+        //Task<T> GetAsync<T>(string key);
+        //Task<bool> IsExistAsync<T>(string key);
     }
 }

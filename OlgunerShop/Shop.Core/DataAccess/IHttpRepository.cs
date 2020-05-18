@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Shop.Core.DataAccess.Http
+namespace Shop.Core.DataAccess
 {
     public interface IHttpRepository<TEntity> where TEntity : class, new()
     {
