@@ -44,6 +44,7 @@ namespace Shop.BasketService.Api
             services.AddSingleton<ILogManager, NLogManager>();
             services.AddMediatR(typeof(Startup));
             services.AddAutoMapper(typeof(Startup));
+
             // MongoDb
             services.AddMongoDB(Configuration);
 
@@ -56,13 +57,13 @@ namespace Shop.BasketService.Api
 
 
             //Amqp DI
-            //services.AddTransient<IEventBus, RabbitMqBus>();
             services.AddSingleton<IEventBus, RabbitMqBus>(sp =>
             {
                 var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
                 var logFactory = sp.GetRequiredService<ILogManager>();
                 return new RabbitMqBus(sp.GetService<IMediator>(),baseOptions,logFactory, scopeFactory);
             });
+
             //Subscriptions
             services.AddTransient<ProductChangeEventHandler>();
             services.AddTransient<IEventHandler<ProductChangeEvent>, ProductChangeEventHandler>();
@@ -70,6 +71,7 @@ namespace Shop.BasketService.Api
 
             //Generic Repository
             services.AddTransient<IBasketRepository, BasketRepository>();
+
             //services.AddTransient<IHttpRepository<Basket>, HttpRepositoryBase<Basket, HttpClient>>();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
         }

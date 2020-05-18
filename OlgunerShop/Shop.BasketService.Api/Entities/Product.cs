@@ -10,7 +10,7 @@ namespace Shop.BasketService.Api.Entities
 {
     public class Product :  IEntity
     {
-        public Guid _Id { get; set; }
+        public Guid Id { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int CategoryId { get; set; } 

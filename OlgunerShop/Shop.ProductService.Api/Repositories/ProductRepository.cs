@@ -12,7 +12,7 @@ namespace Shop.ProductService.Api.Repositories
     public class ProductRepository : IProductRepository
     {
 
-        private IEventBus eventBus;
+        private readonly IEventBus eventBus;
         public ProductRepository(IEventBus eventBus)
         {
             this.eventBus = eventBus;
