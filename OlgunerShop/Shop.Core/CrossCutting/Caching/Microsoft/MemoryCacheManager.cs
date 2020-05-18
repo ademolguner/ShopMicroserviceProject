@@ -7,15 +7,14 @@ namespace Shop.Core.CrossCutting.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
-
         protected ObjectCache Cache => System.Runtime.Caching.MemoryCache.Default;
-        
+
         public T Get<T>(string key)
         {
             return (T)Cache[key];
         }
 
-        public void Add(string key, object data, int cacheTime=60)
+        public void Add(string key, object data, int cacheTime = 60)
         {
             if (data == null)
             {
@@ -24,11 +23,7 @@ namespace Shop.Core.CrossCutting.Caching.Microsoft
 
             var policy = new CacheItemPolicy { AbsoluteExpiration = DateTime.Now + TimeSpan.FromMinutes(cacheTime) };
             Cache.Add(new CacheItem(key, data), policy);
-
         }
-
-      
-
 
         public bool IsAdd(string key)
         {
@@ -58,6 +53,5 @@ namespace Shop.Core.CrossCutting.Caching.Microsoft
                 Remove(item.Key);
             }
         }
-       
     }
 }

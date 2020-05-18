@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Shop.Core.Amqp.Commands;
+﻿using Shop.Core.Amqp.Commands;
+using System;
 
 namespace Shop.Domain.Commands
 {

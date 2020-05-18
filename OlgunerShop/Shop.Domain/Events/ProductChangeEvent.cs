@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Shop.Core.Amqp.Events;
+﻿using Shop.Core.Amqp.Events;
+using System;
 
 namespace Shop.Domain.Amqp.Events
 {
-    public class ProductChangeEvent:Event
+    public class ProductChangeEvent : Event
     {
-
         public Guid Id { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
@@ -16,7 +13,7 @@ namespace Shop.Domain.Amqp.Events
         public short UnitsInStock { get; set; }
         public string PictureUrl { get; set; }
 
-        public ProductChangeEvent(Guid id,int productId,string productName,int categoryId,decimal unitPrice,short unitsInStock,string pictureUrl)
+        public ProductChangeEvent(Guid id, int productId, string productName, int categoryId, decimal unitPrice, short unitsInStock, string pictureUrl)
         {
             Id = id;
             ProductId = productId;

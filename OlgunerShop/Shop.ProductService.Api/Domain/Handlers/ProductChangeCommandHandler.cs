@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Shop.Core.Amqp.Bus;
 using Shop.Domain.Amqp.Events;
 using Shop.Domain.Commands;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Shop.ProductService.Api.Domain.Handlers
 {
@@ -18,6 +15,7 @@ namespace Shop.ProductService.Api.Domain.Handlers
         {
             _eventBus = eventBus;
         }
+
         public Task<bool> Handle(ProductChangeCommand request, CancellationToken cancellationToken)
         {
             //After Update from  Product Database
@@ -33,6 +31,5 @@ namespace Shop.ProductService.Api.Domain.Handlers
             //publish event to rabbitMQ
             return Task.FromResult(true);
         }
-
     }
 }

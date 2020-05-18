@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Shop.Core.Entities;
+﻿using Shop.Core.Entities;
+using System;
 
 namespace Shop.BasketService.Entities.Models
 {
     public class Basket : IEntity
     {
-
         public Guid Id { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }

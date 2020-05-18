@@ -1,6 +1,6 @@
+using MongoDB.Driver;
 using System.Linq;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 
 namespace Shop.Core.DataAccess.Mongo
 {
@@ -11,7 +11,7 @@ namespace Shop.Core.DataAccess.Mongo
         public MongoSeeder(IMongoDatabase database)
         {
             Database = database;
-        } 
+        }
 
         public async Task SeedAsync()
         {

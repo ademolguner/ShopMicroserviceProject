@@ -1,4 +1,5 @@
 ﻿using NLog;
+
 namespace Shop.Core.CrossCutting.Logging.NLog
 {
     public class NLogManager : ILogManager

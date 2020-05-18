@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Shop.BasketService.Api.Configurations.Infrastructure
 {
@@ -13,11 +11,13 @@ namespace Shop.BasketService.Api.Configurations.Infrastructure
     {
         private readonly HttpClient _httpClient;
         private ILogger<CustomHttpClient> _logger;
+
         public CustomHttpClient(ILogger<CustomHttpClient> logger)
         {
             _logger = logger;
             _httpClient = new HttpClient();
         }
+
         public async Task<string> GetStringAsync(string uri)
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, uri);

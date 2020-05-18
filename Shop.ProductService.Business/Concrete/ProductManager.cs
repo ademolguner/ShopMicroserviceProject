@@ -2,18 +2,16 @@
 using Shop.Domain.Commands;
 using Shop.ProductService.Business.Abstract;
 using Shop.ProductService.Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.ProductService.Business.Concrete
 {
     public class ProductManager : IProductServices
     {
-
         private IEventBus eventBus;
+
         public ProductManager(IEventBus eventBus)
         {
             this.eventBus = eventBus;
@@ -39,7 +37,6 @@ namespace Shop.ProductService.Business.Concrete
 
         private List<Product> LoadProductList()
         {
-
             List<Product> ProductList = new List<Product>();
             ProductList.Add(new Product()
             {

@@ -4,6 +4,6 @@ namespace Shop.Core.DataAccess.Mongo
 {
     public interface IDatabaseSeeder
     {
-         Task SeedAsync();
+        Task SeedAsync();
     }
 }

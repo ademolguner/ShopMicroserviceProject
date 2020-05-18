@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Consul;
+﻿using Consul;
 using InfoQ.Core.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Shop.Core.Extensions
 {
-
     public static class Consul
     {
         public static IServiceCollection AddConsul(this IServiceCollection service, IConfiguration configuration)
@@ -32,7 +29,5 @@ namespace Shop.Core.Extensions
             }
             return service;
         }
-
-
     }
 }

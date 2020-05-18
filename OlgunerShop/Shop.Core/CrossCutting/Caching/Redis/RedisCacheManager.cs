@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ServiceStack.Redis;
+using StackExchange.Redis;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ServiceStack.Redis;
-using StackExchange.Redis;
 
 namespace Shop.Core.CrossCutting.Caching.Redis
 {
     public class RedisCacheManager : ICacheManager
     {
-        
         private readonly IRedisClient _redisClient;
         private readonly ConnectionMultiplexer _connection;
+
         public RedisCacheManager()
         {
             _redisClient = new RedisClient();
@@ -23,14 +23,14 @@ namespace Shop.Core.CrossCutting.Caching.Redis
                 },
                 AbortOnConnectFail = false
             });
-            
         }
+
         public T Get<T>(string key)
         {
             return (T)_redisClient.Get<T>(key);
         }
 
-        public void Add(string key, object data, int cacheTime=60)
+        public void Add(string key, object data, int cacheTime = 60)
         {
             if (data != null && _connection.IsConnected)
             {
@@ -65,6 +65,7 @@ namespace Shop.Core.CrossCutting.Caching.Redis
                 }
             }
         }
+
         public void Clear()
         {
             if (_connection.IsConnected)

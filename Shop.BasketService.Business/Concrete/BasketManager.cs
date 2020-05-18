@@ -1,18 +1,19 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using Shop.BasketService.Business.Abstract;
+using Shop.BasketService.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Shop.BasketService.Business.Abstract;
-using Shop.BasketService.Entities.Models;
 
 namespace Shop.BasketService.Business.Concrete
 {
     public class BasketManager : IBasketServices
     {
         private readonly IMongoDatabase _database;
+
         public BasketManager(IMongoDatabase database)
         {
             _database = database;

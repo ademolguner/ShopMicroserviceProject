@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using AutoMapper;
-using InfoQ.Core.Entities;
+﻿using InfoQ.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Shop.BasketService.Api.Configurations.Infrastructure;
-using Shop.BasketService.Api.Entities; 
+using Shop.BasketService.Api.Entities;
 using Shop.BasketService.Business.Abstract;
 using Shop.BasketService.Entities.Models;
-using Shop.Core.DataAccess.Http;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Shop.BasketService.Api.Controllers
 {
@@ -23,16 +18,16 @@ namespace Shop.BasketService.Api.Controllers
     {
         private readonly IHttpClient _httpClient;
         private readonly BaseOptions _options;
-        private readonly IBasketServices  _basketServices;
+        private readonly IBasketServices _basketServices;
+
         public BasketController(
-            IHttpClient httpClient, 
+            IHttpClient httpClient,
             IOptions<BaseOptions> options, IBasketServices basketServices)
         {
             _httpClient = httpClient;
             _basketServices = basketServices;
             _options = options.Value;
         }
-      
 
         // PUT: api/Basket/5
         [HttpPost]
@@ -42,9 +37,9 @@ namespace Shop.BasketService.Api.Controllers
 
             var result = await _httpClient.GetStringAsync($"{productServiceEndpoint?.ServicePath}/api/product/{basketItem.ProductId}");
             var product = JsonConvert.DeserializeObject<Product>(result);
-            if (product.UnitsInStock>0)
+            if (product.UnitsInStock > 0)
             {
-                var basket=new Basket()
+                var basket = new Basket()
                 {
                     Id = Guid.NewGuid(),
                     ProductId = product.ProductId,
@@ -60,7 +55,5 @@ namespace Shop.BasketService.Api.Controllers
 
             return BadRequest(Task.FromException(new Exception("Stokta ürün yok")));
         }
-
-      
     }
 }

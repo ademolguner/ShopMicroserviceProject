@@ -1,19 +1,18 @@
-﻿using MediatR;
+﻿using InfoQ.Core.Entities;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Shop.Core.Amqp.Bus;
+using Shop.Core.Amqp.Commands;
 using Shop.Core.Amqp.Events;
+using Shop.Core.CrossCutting.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfoQ.Core.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using Shop.Core.Amqp.Commands;
-using Shop.Core.CrossCutting.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Shop.Core.Amqp.Infrastructure
 {
@@ -25,7 +24,8 @@ namespace Shop.Core.Amqp.Infrastructure
         private readonly BaseOptions _options;
         private readonly ILogManager _logManager;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        public RabbitMqBus(IMediator mediator, BaseOptions options,ILogManager logManager, IServiceScopeFactory serviceScopeFactory)
+
+        public RabbitMqBus(IMediator mediator, BaseOptions options, ILogManager logManager, IServiceScopeFactory serviceScopeFactory)
         {
             _mediator = mediator;
             _handlers = new Dictionary<string, List<Type>>();
@@ -33,8 +33,8 @@ namespace Shop.Core.Amqp.Infrastructure
             _options = options;
             _logManager = logManager;
             _serviceScopeFactory = serviceScopeFactory;
-
         }
+
         public Task SendCommand<T>(T command) where T : Command
         {
             return _mediator.Send(command);
@@ -42,13 +42,12 @@ namespace Shop.Core.Amqp.Infrastructure
 
         public void Publish<T>(T @event) where T : Event
         {
-
             var factory = new ConnectionFactory()
             {
                 HostName = _options.RabbitMq.HostName,
                 UserName = _options.RabbitMq.UserName,
                 Password = _options.RabbitMq.Password,
-            }; 
+            };
             using var connection = factory.CreateConnection();
             using (var channel = connection.CreateModel())
             {
@@ -91,7 +90,7 @@ namespace Shop.Core.Amqp.Infrastructure
                 UserName = _options.RabbitMq.UserName,
                 Password = _options.RabbitMq.Password,
                 DispatchConsumersAsync = true
-            }; 
+            };
             var eventName = typeof(T).Name;
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
@@ -112,11 +111,12 @@ namespace Shop.Core.Amqp.Infrastructure
             }
             catch (Exception e)
             {
-               _logManager.Error(e.Message);
-               _logManager.Error(e.InnerException?.Message);
-               _logManager.Error(e.StackTrace);
+                _logManager.Error(e.Message);
+                _logManager.Error(e.InnerException?.Message);
+                _logManager.Error(e.StackTrace);
             }
         }
+
         private async Task ProcessEvent(string eventName, string message)
         {
             if (_handlers.ContainsKey(eventName))
@@ -136,6 +136,6 @@ namespace Shop.Core.Amqp.Infrastructure
                     }
                 }
             }
-        } 
+        }
     }
 }

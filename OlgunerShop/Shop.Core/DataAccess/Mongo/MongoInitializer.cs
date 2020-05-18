@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Shop.Core.DataAccess.Mongo
 {
@@ -14,7 +14,7 @@ namespace Shop.Core.DataAccess.Mongo
         private readonly IMongoDatabase _database;
         private readonly IDatabaseSeeder _seeder;
 
-        public MongoInitializer(IMongoDatabase database, 
+        public MongoInitializer(IMongoDatabase database,
             IDatabaseSeeder seeder,
             IOptions<MongoOptions> options)
         {

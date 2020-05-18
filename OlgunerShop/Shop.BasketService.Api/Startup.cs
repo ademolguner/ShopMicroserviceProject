@@ -1,28 +1,23 @@
-
-using System.Net.Http;
 using AutoMapper;
 using InfoQ.Core.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using ServiceStack;
 using Shop.BasketService.Api.Configurations.Infrastructure;
 using Shop.BasketService.Api.Configurations.Log;
-using Shop.BasketService.Api.Domain.Handlers; 
+using Shop.BasketService.Api.Domain.Handlers;
+using Shop.BasketService.Business.Abstract;
+using Shop.BasketService.Business.Concrete;
 using Shop.Core.Amqp.Bus;
-using Shop.Core.Amqp.Events;
 using Shop.Core.Amqp.Infrastructure;
 using Shop.Core.CrossCutting.Logging;
 using Shop.Core.CrossCutting.Logging.NLog;
-using Shop.Core.DataAccess.Http;
 using Shop.Core.DataAccess.Mongo;
 using Shop.Domain.Amqp.Events;
-using Shop.BasketService.Business.Abstract;
-using Shop.BasketService.Business.Concrete;
 
 namespace Shop.BasketService.Api
 {
@@ -52,22 +47,17 @@ namespace Shop.BasketService.Api
             services.AddSingleton<ILogManager, NLogManager>();
             services.AddNLogConfig("/nlog.config");
 
-
-
-
-
             //Amqp DI
             services.AddSingleton<IEventBus, RabbitMqBus>(sp =>
             {
                 var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
                 var logFactory = sp.GetRequiredService<ILogManager>();
-                return new RabbitMqBus(sp.GetService<IMediator>(),baseOptions,logFactory, scopeFactory);
+                return new RabbitMqBus(sp.GetService<IMediator>(), baseOptions, logFactory, scopeFactory);
             });
 
             //Subscriptions
             services.AddTransient<ProductChangeEventHandler>();
             services.AddTransient<IEventHandler<ProductChangeEvent>, ProductChangeEventHandler>();
-
 
             //Generic Repository
             services.AddTransient<IBasketServices, BasketManager>();
@@ -95,12 +85,10 @@ namespace Shop.BasketService.Api
             ConfigureEventBus(app);
         }
 
-
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetService<IEventBus>();
             eventBus.Subscribe<ProductChangeEvent, ProductChangeEventHandler>();
-           
         }
     }
 }

@@ -10,9 +10,10 @@ namespace Shop.Core.DataAccess.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
-        where TContext :DbContext,new()
+        where TContext : DbContext, new()
     {
         #region Async Process
+
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             using (var context = new TContext())
@@ -23,6 +24,7 @@ namespace Shop.Core.DataAccess.EntityFramework
                 return entity;
             }
         }
+
         public async Task DeleteAsync(TEntity entity)
         {
             using (var context = new TContext())
@@ -32,6 +34,7 @@ namespace Shop.Core.DataAccess.EntityFramework
                 await context.SaveChangesAsync();
             }
         }
+
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
         {
             var context = new TContext();
@@ -39,6 +42,7 @@ namespace Shop.Core.DataAccess.EntityFramework
                 await context.Set<TEntity>().FirstOrDefaultAsync() :
                 await context.Set<TEntity>().Where(filter).FirstOrDefaultAsync();
         }
+
         public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             var context = new TContext();
@@ -64,7 +68,7 @@ namespace Shop.Core.DataAccess.EntityFramework
                 context.Set<TEntity>().Where(filter).Skip(skip).Take(pagesize).AsQueryable();
         }
 
-        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter,int page, int pagesize)
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter, int page, int pagesize)
         {
             var context = new TContext();
             var skip = (page - 1) * pagesize;
@@ -84,7 +88,6 @@ namespace Shop.Core.DataAccess.EntityFramework
             }
         }
 
-        #endregion
-
+        #endregion Async Process
     }
 }
