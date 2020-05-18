@@ -12,9 +12,7 @@ using Microsoft.Extensions.Hosting;
 using ServiceStack;
 using Shop.BasketService.Api.Configurations.Infrastructure;
 using Shop.BasketService.Api.Configurations.Log;
-using Shop.BasketService.Api.Domain.Handlers;
-using Shop.BasketService.Api.Entities;
-using Shop.BasketService.Api.Repositories;
+using Shop.BasketService.Api.Domain.Handlers; 
 using Shop.Core.Amqp.Bus;
 using Shop.Core.Amqp.Events;
 using Shop.Core.Amqp.Infrastructure;
@@ -23,6 +21,8 @@ using Shop.Core.CrossCutting.Logging.NLog;
 using Shop.Core.DataAccess.Http;
 using Shop.Core.DataAccess.Mongo;
 using Shop.Domain.Amqp.Events;
+using Shop.BasketService.Business.Abstract;
+using Shop.BasketService.Business.Concrete;
 
 namespace Shop.BasketService.Api
 {
@@ -70,7 +70,7 @@ namespace Shop.BasketService.Api
 
 
             //Generic Repository
-            services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddTransient<IBasketServices, BasketManager>();
 
             //services.AddTransient<IHttpRepository<Basket>, HttpRepositoryBase<Basket, HttpClient>>();
             services.AddSingleton<IHttpClient, CustomHttpClient>();

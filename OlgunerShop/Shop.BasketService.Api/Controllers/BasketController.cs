@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Shop.BasketService.Api.Configurations.Infrastructure;
-using Shop.BasketService.Api.Entities;
-using Shop.BasketService.Api.Repositories;
+using Shop.BasketService.Api.Entities; 
+using Shop.BasketService.Business.Abstract;
+using Shop.BasketService.Entities.Models;
 using Shop.Core.DataAccess.Http;
 
 namespace Shop.BasketService.Api.Controllers
@@ -22,13 +23,13 @@ namespace Shop.BasketService.Api.Controllers
     {
         private readonly IHttpClient _httpClient;
         private readonly BaseOptions _options;
-        private readonly IBasketRepository _basketRepository;
+        private readonly IBasketServices  _basketServices;
         public BasketController(
             IHttpClient httpClient, 
-            IOptions<BaseOptions> options, IBasketRepository basketRepository)
+            IOptions<BaseOptions> options, IBasketServices basketServices)
         {
             _httpClient = httpClient;
-            _basketRepository = basketRepository;
+            _basketServices = basketServices;
             _options = options.Value;
         }
       
@@ -45,7 +46,7 @@ namespace Shop.BasketService.Api.Controllers
             {
                 var basket=new Basket()
                 {
-                    _Id = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     ProductId = product.ProductId,
                     UnitPrice = product.UnitPrice,
                     ProductName = product.ProductName,
@@ -53,7 +54,7 @@ namespace Shop.BasketService.Api.Controllers
                     UnitsInStock = product.UnitsInStock,
                     //Adem sen doldur
                 };
-                await _basketRepository.AddAsync(basket);
+                await _basketServices.AddAsync(basket);
                 return Ok(basket);
             }
 

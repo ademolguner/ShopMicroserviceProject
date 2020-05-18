@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Shop.Core.Entities;
 
-namespace Shop.BasketService.Api.Entities
+namespace Shop.BasketService.Entities.Models
 {
     public class Basket : IEntity
     {
 
-        public Guid _Id { get; set; }
+        public Guid Id { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }

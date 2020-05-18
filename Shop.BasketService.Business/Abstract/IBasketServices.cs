@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Shop.BasketService.Api.Entities;
-namespace Shop.BasketService.Api.Repositories
+using Shop.BasketService.Entities.Models;
+
+namespace Shop.BasketService.Business.Abstract
 {
-    public interface IBasketRepository
+    public interface IBasketServices
     {
         Task<Basket> GetAsync(int productId);
         Task<List<Basket>> GetListAsync(Expression<Func<Basket, bool>> filter);
