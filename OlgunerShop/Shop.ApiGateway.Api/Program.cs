@@ -13,12 +13,13 @@ namespace Shop.ApiGateway.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((host, config) => {
-                config.AddJsonFile("ocelot.json");            
+            .ConfigureAppConfiguration((host, config) =>
+            {
+                config.AddJsonFile("ocelot.json");
             })
             .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://localhost:5000");
+                    //webBuilder.UseUrls("http://localhost:5000");
                     webBuilder.UseStartup<Startup>();
                 });
     }
