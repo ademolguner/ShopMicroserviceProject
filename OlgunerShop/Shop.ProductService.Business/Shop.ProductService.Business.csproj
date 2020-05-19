@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />
     <ProjectReference Include="..\Shop.ProductService.Entities\Shop.ProductService.Entities.csproj" />
   </ItemGroup>
 

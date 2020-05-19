@@ -11,9 +11,9 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
 WORKDIR /src
 COPY ["Shop.ProductService.Api/Shop.ProductService.Api.csproj", "Shop.ProductService.Api/"]
 COPY ["Shop.ProductService.Business/Shop.ProductService.Business.csproj", "Shop.ProductService.Business/"]
+COPY ["Shop.ProductService.Entities/Shop.ProductService.Entities.csproj", "Shop.ProductService.Entities/"]
 COPY ["Shop.Domain/Shop.Domain.csproj", "Shop.Domain/"]
 COPY ["Shop.Core/Shop.Core.csproj", "Shop.Core/"]
-COPY ["Shop.ProductService.Entities/Shop.ProductService.Entities.csproj", "Shop.ProductService.Entities/"]
 RUN dotnet restore "Shop.ProductService.Api/Shop.ProductService.Api.csproj"
 COPY . .
 WORKDIR "/src/Shop.ProductService.Api"

@@ -10,10 +10,10 @@ EXPOSE 5002
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
 WORKDIR /src
 COPY ["Shop.BasketService.Api/Shop.BasketService.Api.csproj", "Shop.BasketService.Api/"]
-COPY ["Shop.Domain/Shop.Domain.csproj", "Shop.Domain/"]
-COPY ["Shop.Core/Shop.Core.csproj", "Shop.Core/"]
 COPY ["Shop.BasketService.Business/Shop.BasketService.Business.csproj", "Shop.BasketService.Business/"]
 COPY ["Shop.BasketService.Entities/Shop.BasketService.Entities.csproj", "Shop.BasketService.Entities/"]
+COPY ["Shop.Domain/Shop.Domain.csproj", "Shop.Domain/"]
+COPY ["Shop.Core/Shop.Core.csproj", "Shop.Core/"]
 RUN dotnet restore "Shop.BasketService.Api/Shop.BasketService.Api.csproj"
 COPY . .
 WORKDIR "/src/Shop.BasketService.Api"
