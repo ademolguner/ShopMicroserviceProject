@@ -23,6 +23,7 @@ namespace Shop.ApiProject.Test
 
 
         [TestCase(1, "PC")]
+        [TestCase(2, "PC")]
         public void Product_Find(int productId, string expectedProductName)
         {
             var product = _productManager.GetAsync(productId);
@@ -31,6 +32,7 @@ namespace Shop.ApiProject.Test
          
 
         [TestCase(1)]
+        [TestCase(11)]
         public void Product_FindBy_Is_Not_Null(int productId)
         {
             var product = _productManager.GetAsync(productId);
