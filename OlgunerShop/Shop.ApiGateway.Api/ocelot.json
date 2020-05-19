@@ -1,0 +1,70 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/product",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/product-service/product"
+    },
+    {
+      "DownstreamPathTemplate": "/api/basket",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET","POST","PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/basket-service/basket"
+    } 
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
+
+
+
+
+
+//{
+//  "ReRoutes": [
+//    {
+//      "DownstreamPathTemplate": "/api/product",
+//      "DownstreamScheme": "http",
+//      "UseServiceDiscovery": true,
+//      "ServiceName": "product-service",
+//      "UpstreamPathTemplate": "/product-service/",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "AuthenticationOptions": {
+//        "AuthenticationProviderKey": "TestKey",
+//        "AllowedScopes": []
+//      }
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/basket",
+//      "DownstreamScheme": "http",
+//      "UseServiceDiscovery": true,
+//      "ServiceName": "basket-service",
+//      "UpstreamPathTemplate": "/basket-service/",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "AuthenticationOptions": {
+//        "AuthenticationProviderKey": "TestKey",
+//        "AllowedScopes": []
+//      }
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "ServiceDiscoveryProvider": {
+//      "Type": "CicekSepeti"
+//    },
+//    "BaseUrl": "http://localhost:7000"
+//  }
+//}

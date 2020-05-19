@@ -7,7 +7,7 @@ using System.Linq;
 namespace Shop.ApiGateway.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AdemOlgunerController : ControllerBase
     {
 
@@ -18,9 +18,40 @@ namespace Shop.ApiGateway.Api.Controllers
         }
 
         [HttpGet]
-        public string[] ShoppingOperationKeywords()
+        public string[] Get()
         {
             return new[] { "Adem", "Olguner", "Cicek Sepeti", "Proje" };
         }
+
+        [HttpPost("AddProduct")]
+        public void AddProduct()
+        {
+
+        }
+        [HttpPut("UpdateProduct")]
+        public void UpdateProduct()
+        {
+
+        }
+
+        [HttpGet("GetProduct")]
+        public void GetProduct()
+        {
+
+        }
+
+
+        [HttpGet("GetBasket")]
+        public void GetBasket()
+        {
+
+        }
+
+        [HttpGet("GetBasketProducts")]
+        public void GetBasketProducts()
+        {
+
+        }
+
     }
 }
