@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Shop.Core.Amqp.Bus;
 using Shop.Core.Utilities.Exceptions;
 using Shop.ProductService.Business.Abstract;
@@ -20,29 +20,50 @@ namespace Shop.ApiProject.Test
             _productManager = new ProductManager(eventBus);
         }
 
-        
 
-        [Test]
-        public void Product_FindBy_Null_Or_Default()
+
+        [TestCase(1, "PC")]
+        public void Product_Find(int productId, string expectedProductName)
         {
-            var product= _productManager.GetAsync(1);
-            Assert.AreEqual(product.Result.ProductName, "PC");
-           
+            var product = _productManager.GetAsync(productId);
+            Assert.AreEqual(product.Result.ProductName, expectedProductName);
+        }
+         
+
+        [TestCase(1)]
+        public void Product_FindBy_Is_Not_Null(int productId)
+        {
+            var product = _productManager.GetAsync(productId);
+            Assert.IsNotNull(product.Result);
+
         }
 
-        [Test]
-        public void Product_FindBy_Null_Or_Default_Exception()
+
+        //[TestCase(1, typeof(ArgumentNullException))]
+        //[TestCase(2, typeof(ArgumentException))]
+        //[TestCase(13, typeof(ProductNotFoundException))]
+        //public  void Product_Find_Exception(int id, Type expectedException)
+        //{
+        //    var data = _productManager.GetAsync(id);
+        //    Assert.Throws(expectedException, () => _productManager.GetAsync(id));
+        //}
+
+
+
+
+
+        [TestCase(2)]
+        public void Product_Update_Is_EventHandler(int productId)
         {
-            var product = _productManager.GetAsync(851);
-            //Assert.AreEqual(product.Result.ProductName, "PC");
-            Assert.Catch<ProductNotFoundException>(() => product.Result.ProductName.ToString(), "PC");
-            Assert.Throws<ProductNotFoundException>(() => product.Result.ProductName.ToString(), "PC");
+            var product = _productManager.GetAsync(productId);
+            product.Result.ProductName = "Urun Adi Degsti";
+            // _productManager.UpdateAsync(product.Result);
         }
 
-
-        public void Product_Added_Control()
-        {
-
-        }
+        // [Test]
+        //public void Product_Added_Control()
+        //{
+        //    // yeni product ekleme buraya mı yoksa basket a mı yazılacak bakacaz
+        //}
     }
 }

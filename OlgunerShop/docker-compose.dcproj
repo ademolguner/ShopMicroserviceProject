@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>209704e9-6463-475e-9f35-2e218d08eb85</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/ademolguner</DockerServiceUrl>
     <DockerServiceName>shop.apigateway.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

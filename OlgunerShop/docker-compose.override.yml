@@ -5,18 +5,18 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "5000"
 
   shop.productservice.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "5001"
 
 
   shop.basketservice.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "5002"
 

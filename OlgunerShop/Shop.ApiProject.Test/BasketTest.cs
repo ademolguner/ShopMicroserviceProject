@@ -27,13 +27,15 @@ namespace Shop.ApiProject.Test
 
 
         [Test]
-        public void Create_Basket_Item()
+        public void Create_Basket_Product_Added_Item()
         {
             var basketItem = new Basket() { };
             var resultData = _basketManager.AddAsync(basketItem);
             Assert.AreEqual(resultData.Status, TaskStatus.Created);
 
         }
+
+        
 
         [Test]
         public void Basket_Null_Exception()
@@ -45,9 +47,6 @@ namespace Shop.ApiProject.Test
         }
 
 
-        public void Product_Added_Control()
-        {
-
-        }
+        
     }
 }

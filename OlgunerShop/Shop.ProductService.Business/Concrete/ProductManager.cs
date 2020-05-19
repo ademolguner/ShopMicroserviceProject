@@ -1,4 +1,5 @@
 ﻿using Shop.Core.Amqp.Bus;
+using Shop.Core.Utilities.Exceptions;
 using Shop.Domain.Commands;
 using Shop.ProductService.Business.Abstract;
 using Shop.ProductService.Entities.Models;
@@ -15,12 +16,15 @@ namespace Shop.ProductService.Business.Concrete
         public ProductManager(IEventBus eventBus)
         {
             this.eventBus = eventBus;
-              LoadProductList();
+            LoadProductList();
         }
 
         public async Task<Product> GetAsync(int productId)
         {
-            return await Task.FromResult<Product>(LoadProductList().FirstOrDefault(p => p.ProductId == productId));
+            var product = LoadProductList().FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+                return await Task.FromResult<Product>(LoadProductList().FirstOrDefault(p => p.ProductId == productId));
+            return await Task.FromException<Product>(new ProductNotFoundException());
         }
 
         public async Task UpdateAsync(Product product)
