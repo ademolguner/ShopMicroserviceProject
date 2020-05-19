@@ -1,6 +1,8 @@
-﻿namespace Shop.ProductService.Entities.Models
+﻿using Shop.Core.Entities;
+
+namespace Shop.ProductService.Entities.Models
 {
-    public class Product
+    public class Product:IEntity
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
