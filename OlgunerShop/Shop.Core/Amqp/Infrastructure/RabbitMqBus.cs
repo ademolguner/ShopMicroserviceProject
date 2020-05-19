@@ -47,6 +47,7 @@ namespace Shop.Core.Amqp.Infrastructure
                 HostName = _options.RabbitMq.HostName,
                 UserName = _options.RabbitMq.UserName,
                 Password = _options.RabbitMq.Password,
+                Port = _options.RabbitMq.Port
             };
             using var connection = factory.CreateConnection();
             using (var channel = connection.CreateModel())

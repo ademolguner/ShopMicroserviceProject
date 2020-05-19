@@ -2,9 +2,9 @@
 {
     public class BaseOptions
     {
-        public Consul Consul { get; set; }
+        //public Consul Consul { get; set; }
         public Redis Redis { get; set; }
-        public TokenOptions TokenOptions { get; set; }
+        //public TokenOptions TokenOptions { get; set; }
         public RabbitMq RabbitMq { get; set; }
         public Service[] Services { get; set; }
     }

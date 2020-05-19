@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using System;
 using System.IO;
 using System.Reflection;
@@ -52,6 +54,8 @@ namespace Shop.ApiGateway.Api
                 options.IncludeXmlComments(xmlPath);
             });
             #endregion
+
+            services.AddOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +85,8 @@ namespace Shop.ApiGateway.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseOcelot();
         }
     }
 }
