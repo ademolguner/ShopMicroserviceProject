@@ -24,6 +24,6 @@
     <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mapper\AutoMapper\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

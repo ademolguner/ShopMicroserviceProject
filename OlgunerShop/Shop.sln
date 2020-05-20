@@ -9,9 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Services", "2-Services", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-ApiGateway", "3-ApiGateway", "{F339DB6E-0961-4A8F-81A1-0E2FECE9E8AA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-WebUI", "4-WebUI", "{284F48B4-49BB-471F-B8BE-300A73FDD782}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Test", "5-Test", "{BED0EA97-F4B0-42D2-9F86-40208FB62C97}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Test", "4-Test", "{BED0EA97-F4B0-42D2-9F86-40208FB62C97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductService", "{853AEDC0-204E-4397-B2F3-738B41649902}"
 EndProject
@@ -31,13 +29,13 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.ApiProject.Test", "Shop.ApiProject.Test\Shop.ApiProject.Test.csproj", "{4AB51EE7-F974-4F5F-BEF8-25E411967F4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.BasketService.Entities", "Shop.BasketService.Entities\Shop.BasketService.Entities.csproj", "{BFEBF9A0-2E85-47D5-8226-4FFF7EB4FCAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.BasketService.Entities", "Shop.BasketService.Entities\Shop.BasketService.Entities.csproj", "{BFEBF9A0-2E85-47D5-8226-4FFF7EB4FCAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.BasketService.Business", "Shop.BasketService.Business\Shop.BasketService.Business.csproj", "{6E868795-F751-4AB8-9499-8CB0D0D8F1C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.BasketService.Business", "Shop.BasketService.Business\Shop.BasketService.Business.csproj", "{6E868795-F751-4AB8-9499-8CB0D0D8F1C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.ProductService.Entities", "Shop.ProductService.Entities\Shop.ProductService.Entities.csproj", "{FB603D44-771B-457E-89DC-B36F18E66A48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.ProductService.Entities", "Shop.ProductService.Entities\Shop.ProductService.Entities.csproj", "{FB603D44-771B-457E-89DC-B36F18E66A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.ProductService.Business", "Shop.ProductService.Business\Shop.ProductService.Business.csproj", "{CA3083CD-AAF6-4A03-958B-DF4807F5FD29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.ProductService.Business", "Shop.ProductService.Business\Shop.ProductService.Business.csproj", "{CA3083CD-AAF6-4A03-958B-DF4807F5FD29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
