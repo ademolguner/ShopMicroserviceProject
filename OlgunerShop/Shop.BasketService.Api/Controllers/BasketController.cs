@@ -47,7 +47,6 @@ namespace Shop.BasketService.Api.Controllers
                     ProductName = product.ProductName,
                     PictureUrl = product.PictureUrl,
                     UnitsInStock = product.UnitsInStock,
-                    //Adem sen doldur
                 };
                 await _basketServices.AddAsync(basket);
                 return Ok(basket);

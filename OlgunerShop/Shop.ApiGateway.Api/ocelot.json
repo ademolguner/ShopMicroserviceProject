@@ -1,8 +1,8 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/product",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/product/{everything}",
+      "DownstreamScheme": "https",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamHostAndPorts": [
         {
@@ -10,19 +10,19 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/product-service/product"
+      "UpstreamPathTemplate": "/api/product"
     },
     {
-      "DownstreamPathTemplate": "/api/basket",
-      "DownstreamScheme": "http",
-      "UpstreamHttpMethod": [ "GET","POST","PUT" ],
+      "DownstreamPathTemplate": "api/basket/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/basket-service/basket"
+      "UpstreamPathTemplate": "/api/basket"
     } 
   ],
   "GlobalConfiguration": {

@@ -10,6 +10,7 @@ namespace Shop.ProductService.Api.Domain.Handlers
     public class ProductChangeCommandHandler : IRequestHandler<ProductChangeCommand, bool>
     {
         private readonly IEventBus _eventBus;
+        
 
         public ProductChangeCommandHandler(IEventBus eventBus)
         {
